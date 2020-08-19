@@ -17,6 +17,19 @@
 // console.log("submitted");
 // });
 
-function addExpense(){
-    console.log("submitted");
-}
+function addExpense() {
+    event.preventDefault();
+    db.collection("expenses")
+      .add({
+        title: $("#expenseTitle").val(),
+        value: $("#expenseValue").val(),
+        timestamp: firebase.firestore.Timestamp.now(),
+        tag: $("#expenseTag").val(),
+      })
+      .then(function () {
+        console.log("Document successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
+  }
