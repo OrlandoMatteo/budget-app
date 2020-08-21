@@ -8,7 +8,7 @@ var myChart = Highcharts.chart("container", {
     type: "line",
   },
   title: {
-    text: "Fruit Consumption",
+    text: "Last Month",
   },
   xAxis: {
     tickInterval: 30 * 24 * 3600 * 1000, // one week
@@ -23,7 +23,7 @@ var myChart = Highcharts.chart("container", {
   },
   yAxis: {
     title: {
-      text: "Lasth month",
+      text: "Savings €",
     },
   },
   series: [
@@ -57,22 +57,6 @@ db.collection("movements")
     snapshot.docs.forEach((doc) => {
       var item = doc.data();
 
-      // myChart.data.datasets.forEach((dataset) => {
-      //   var value = 0;
-      //   if (item.income) {
-      //     value = lastValue + parseFloat(item.value);
-      //   } else {
-      //     value = lastValue - parseFloat(item.value);
-      //   }
-      //   lastValue = value;
-      //   dataset.data.push(value);
-      // });
-
-      // var timestamp = new Date(item.timestamp.toDate());
-      // var s = timestamp.toDateString();
-      // myChart.data.labels.push(s);
-      // myChart.update();
-
       var timestamp = new Date(item.timestamp.toDate());
       var s = timestamp.toDateString();
 
@@ -95,48 +79,4 @@ db.collection("movements")
         s: s,
       });
     });
-    google.charts.setOnLoadCallback(drawChart(dataTable));
   });
-
-// var ctx = document.getElementById("balanceChart");
-// var myChart = new Chart(ctx, {
-//   type: "line",
-//   data: {
-//     labels: labelsArray,
-//     datasets: [
-//       {
-//         label: "balance",
-//         data: dataArray,
-//       },
-//     ],
-//   },
-//   options: {
-//     scales: {
-//       yAxes: [
-//         {
-//           ticks: {
-//             beginAtZero: true,
-//           },
-//         },
-//       ],
-//     },
-//     // Container for pan options
-//     pan: {
-//       // Boolean to enable panning
-//       enabled: true,
-
-//       // Panning directions.
-//       mode: "x",
-
-//       speed: 1,
-//     },
-
-//     // Container for zoom options
-//     zoom: {
-//       // enable zooming
-//       enabled: true,
-//       // Zooming directions.
-//       mode: "x",
-//     },
-//   },
-// });

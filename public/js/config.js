@@ -26,7 +26,7 @@
 
 var recents = db.collection("expenses");
 recents
-  .orderBy("timestamp")
+  .orderBy("timestamp", "desc")
   .limit(5)
   .get()
   .then((querySnapshot) => {
